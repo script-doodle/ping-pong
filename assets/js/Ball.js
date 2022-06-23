@@ -7,26 +7,32 @@ export default class Ball {
     this.reset();
   }
 
+  // Getting '--x' variable from css
   get x() {
     return parseFloat(getComputedStyle(this.ballElem).getPropertyValue("--x"));
   }
 
+  // Setting value of '--x' variable
   set x(value) {
     this.ballElem.style.setProperty("--x", value);
   }
 
+  // Getting '--y' variable from css
   get y() {
     return parseFloat(getComputedStyle(this.ballElem).getPropertyValue("--y"));
   }
 
+  // Setting value of '--y' variable
   set y(value) {
     this.ballElem.style.setProperty("--y", value);
   }
 
+  // Ball rect
   rect() {
     return this.ballElem.getBoundingClientRect();
   }
 
+  // Reset position
   reset() {
     this.x = 50;
     this.y = 50;
@@ -41,6 +47,7 @@ export default class Ball {
     this.velocity = INITIAL_VELOCITY;
   }
 
+  // Ball update method
   update(delta, paddleRects) {
     this.x += this.direction.x * this.velocity * delta;
     this.y += this.direction.y * this.velocity * delta;
@@ -57,10 +64,12 @@ export default class Ball {
   }
 }
 
+// Generate random number between min & max value
 function randomNumberBetween(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+// Collision happening
 function isCollision(rect1, rect2) {
   return (
     rect1.left <= rect2.right &&
